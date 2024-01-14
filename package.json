@@ -1,0 +1,30 @@
+{
+  "name": "web-420",
+  "author": "Cody Skelton",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.3",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "description": "WEB 420 RESTFul APIs",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CSSkelton/web-420.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CSSkelton/web-420/issues"
+  },
+  "homepage": "https://github.com/CSSkelton/web-420#readme"  
+}
