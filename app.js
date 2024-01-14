@@ -1,3 +1,10 @@
+/**
+ * Title: app.js
+ * Author: Cody Skelton
+ * Date: 1.13.2024
+ * Description: Initial file for WEB-420 Repository 
+ */
+
 const express = require('express');
 const http = require('http');
 const swaggerUi = require('swagger-ui-express');
