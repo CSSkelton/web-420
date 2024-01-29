@@ -1,0 +1,19 @@
+{
+    "composers": [
+        {
+            "composerId": "01",
+            "firstName": "Johann",
+            "lastName": "Bach"
+        },
+        {
+            "composerId": "02",
+            "firstName": "Wolfgang",
+            "lastName": "Mozart"
+        },
+        {
+            "composerId": "03",
+            "firstName": "Ludwig",
+            "lastName": "Beethoven"
+        }
+    ]
+}

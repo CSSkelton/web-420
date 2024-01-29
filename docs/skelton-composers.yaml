@@ -1,0 +1,62 @@
+openapi: "3.0.0"
+info:
+  title: Composer API
+  description: API for the composer application
+  version: 2024-01-28
+
+paths:
+  /composers:
+    get:
+      summary: Returns a list of composer documents
+      description: API for returning a list of composers from MongoDB Atlas
+      responses:
+        '200':
+          description: Composer documents
+        '500': 
+          description: Server Exception
+        '501':
+          description: MongoDB Exception
+      tags:
+        - Composers
+    post:
+      summary: Creates a composer object
+      description: API for adding new composer objects
+      requestBody:
+        description: Composer's information
+        content:
+          application/json:
+            schema:
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+      responses:
+        '200':
+          description: Composer documents
+        '500': 
+          description: Server Exception
+        '501':
+          description: MongoDB Exception
+      tags:
+        - Composers
+  /composers/{id}:
+    get:
+      summary: Returns a composer document
+      description: API for returning a single composer object from MongoDB
+      parameters: 
+        - name: id
+          in: path
+          required: true
+          description: The composerID requested by the user.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Composer documents
+        '500': 
+          description: Server Exception
+        '501':
+          description: MongoDB Exception
+      tags:
+        - Composers
