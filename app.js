@@ -12,6 +12,7 @@ const http = require('http');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJSDoc = require('swagger-jsdoc');
 const composerAPI = require('./routes/skelton-composer-routes');
+const personAPI = require('./routes/skelton-person-routes');
 
 //DB Connection
 var mongoose = require('mongoose');
@@ -48,6 +49,7 @@ const options = {
 const openapiSpecification = swaggerJSDoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 app.use('/api', composerAPI);
+app.use('/api', personAPI);
 
 http.createServer(app).listen(app.get('port'), function() {
     console.log(`Application started and listening on port ${app.get('port')}`);
