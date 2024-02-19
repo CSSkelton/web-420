@@ -7,6 +7,7 @@
     "start": "nodemon app.js"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "bluebird": "^3.7.2",
     "express": "^4.17.1",
     "mongoose": "^5.12.3",
@@ -26,5 +27,5 @@
   "bugs": {
     "url": "https://github.com/CSSkelton/web-420/issues"
   },
-  "homepage": "https://github.com/CSSkelton/web-420#readme"  
+  "homepage": "https://github.com/CSSkelton/web-420#readme"
 }
