@@ -2,8 +2,8 @@
  * Title: skelton-composer-routes.js
  * Description: Composer API routes
  * Author: Cody Skelton
- * Date: 02.04.2024
- * Code requirements from WEB 420 week 4 assignment
+ * Date: 03.03.2024
+ * Code requirements from WEB 420 week 4 and 8 assignments
  * Code derived from WEB 420 course repository
  */
 
@@ -146,5 +146,136 @@ router.post('/composers', async(req, res) => {
         })
     }
 })
+
+/**
+ * updateComposer
+ * @openapi
+ * /api/composers/{id}:
+ *   put:
+ *     tags:
+ *       - Composers
+ *     name: updateComposer
+ *     description: API for updating an existing composer document in MongoDB
+ *     summary: Updates a composer document
+ *     parameters: 
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: composerId
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *        description: Composer information
+ *        content:
+ *          application/json:
+ *            schema:
+ *              required:
+ *                - firstName
+ *                - lastName
+ *              properties:
+ *                firstName:
+ *                  type: string
+ *                lastName:
+ *                  type: string
+ *     responses:
+ *       '200':
+ *         description: Array of composer documents
+ *       '401':
+ *         description: Invalid composerId
+ *       '500':
+ *         description: Server Exception
+ *       '501':
+ *         description: MongoDB Exception
+ */
+router.put('/composers/:id', async (req, res) => {
+    try {
+        const ComposerDocId = req.params.id;
+
+        Composer.findOne({'_id': ComposerDocId}, function(err, composer) {
+            if (err) {
+                console.log(err);
+                res.status(501).send({
+                    'message': `MongoDB Exception: ${err}`
+                })
+            } else if (!composer) {
+                console.log('Invalid composerId');
+                res.status(401).send({
+                    'message': 'Invalid composerId'
+                })
+            } else {
+                console.log(composer);
+                
+                composer.set({
+                    firstName: req.body.firstName,
+                    lastName: req.body.lastName
+                });
+
+                composer.save(function(err, updatedComposer) {
+                    if (err) {
+                        console.log(err);
+                        res.json(updatedComposer);
+                    } else {
+                        console.log(updatedComposer);
+                        res.json(updatedComposer);
+                    }
+                })
+            }
+        }) 
+    } catch (e) {
+        console.log(e);
+        res.status(500).send({
+            'message': `Server Exception: ${e.message}`
+        })
+    }
+})
+
+/**
+ * deleteComposer
+ * @openapi
+ * /api/composers/{id}:
+ *   delete:
+ *     tags:
+ *       - Composers
+ *     name: deleteComposer
+ *     description: API for deleting a composer document from MongoDB.
+ *     summary: Removes a composer document from MongoDB.
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: composerId. 
+ *         schema: 
+ *           type: string
+ *     responses:
+ *       '200':
+ *         description: Composer document
+ *       '500':
+ *         description: Server Exception
+ *       '501':
+ *         description: MongoDB Exception
+ */
+router.delete('/composers/:id', async (req, res) => {
+    try {
+        const composerDocId = req.params.id;
+
+        Composer.findByIdAndDelete({'_id': composerDocId}, function(err, composer) {
+            if (err) {
+                console.log(err);
+                res.status(501).send({
+                    'message': `MongoDB Exception: ${err}`
+                })
+            } else {
+                console.log(composer);
+                res.json(composer);
+            }
+        })
+    } catch (e) {
+        console.log(e);
+        res.status(500).send({
+            'message': `Server Exception: ${e.message}`
+        })
+    }
+})
+
 
 module.exports = router;
