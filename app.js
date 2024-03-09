@@ -15,6 +15,7 @@ const composerAPI = require('./routes/skelton-composer-routes');
 const personAPI = require('./routes/skelton-person-routes');
 const loginAPI = require('./routes/skelton-session-routes');
 const customerAPI = require('./routes/skelton-node-shopper-routes');
+const teamAPI = require('./routes/skelton-capstone-routes');
 
 //DB Connection
 var mongoose = require('mongoose');
@@ -54,6 +55,7 @@ app.use('/api', composerAPI);
 app.use('/api', personAPI);
 app.use('/api', loginAPI);
 app.use('/api', customerAPI);
+app.use('/api', teamAPI);
 
 http.createServer(app).listen(app.get('port'), function() {
     console.log(`Application started and listening on port ${app.get('port')}`);
